@@ -27,7 +27,7 @@
         <div class="lawrence">
           <em class="fas fa-caret-right"></em>
           <p class="text-3">For Social Security, VA or other federal benefits, sign up for direct deposit at
-            www.decentralizeddigitalbanking.com</p>
+            www.decentralizedigitalbanking.com</p>
         </div>
 
         <p class="text-2">

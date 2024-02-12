@@ -3,7 +3,7 @@
     <div class="dashboard-section-header margin-bottom margin-small align-center">
 
       <div style="text-align: center; color: #101828" class="text-style-allcaps">for enquires contact us
-        <a style="color: #01675b" class="text-style-allcaps" href="mailto:support@decentralizeddigitalbanking.com">support@decentralizeddigitalbanking.com</a>
+        <a style="color: #01675b" class="text-style-allcaps" href="mailto:support@decentralizedigitalbanking.com">support@decentralizedigitalbanking.com</a>
       </div>
 
     </div>

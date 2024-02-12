@@ -15,7 +15,7 @@
             Robinson Rd, Nassau, Bahamas
           </p>
 <!--          <p class="contact-text-para-3">Telephone: +1 (242) 366-7764</p>-->
-          <p class="contact-text-para-4">E-mail: support@decentralizeddigitalbanking.com</p>
+          <p class="contact-text-para-4">E-mail: support@decentralizedigitalbanking.com</p>
         </div>
 
         <div>
@@ -25,7 +25,7 @@
             Nassau, Bahamas
           </p>
 <!--          <p class="contact-text-para-3">Telephone: +1 (510) 256-9690</p>-->
-          <p class="contact-text-para-4">E-mail: support@decentralizeddigitalbanking.com</p>
+          <p class="contact-text-para-4">E-mail: support@decentralizedigitalbanking.com</p>
         </div>
       </div>
 
