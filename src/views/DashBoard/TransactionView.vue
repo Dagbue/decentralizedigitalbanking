@@ -61,7 +61,7 @@
                 </td>
                 <td>
                   <div class="separate-3">
-                    <p class="amount-text" >&#36;{{child.Amount}}
+                    <p class="amount-text" >&#36;{{formatNumber(child.Amount)}}
                       <!--                    <span v-if="items.accountNumber === accountCAD">CAD</span>-->
                       <!--                    <span v-if="items.accountNumber === accountNaira">NG</span>-->
                     </p>
@@ -96,7 +96,7 @@
             <div class="pagination">
               <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
               <div class="page-indicator">
-                Page {{ currentPage }} of 1
+                Page {{ currentPage }} of {{ totalPages }}
               </div>
               <button @click="nextPage" :disabled="currentPage === totalPages" class="previous">Next</button>
             </div>
@@ -139,7 +139,7 @@ export default {
       amountCAD: "",
       amountNGN: "",
       currentPage: 1,
-      itemsPerPage: 12,
+      itemsPerPage: 10,
       contacts: [],
       history: [],
     };
@@ -347,7 +347,6 @@ tr{
 }
 
 th {
-
   /*background-color: #F9FBFD;*/
   padding: 10px;
   letter-spacing: 0.5px;

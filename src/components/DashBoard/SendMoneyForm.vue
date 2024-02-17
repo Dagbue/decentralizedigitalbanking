@@ -300,7 +300,6 @@ export default {
   created() {
     // StoreUtils.rootGetters(StoreUtils.getters.transaction.getGetBanks);
   },
-
   mounted() {
     // StoreUtils.dispatch(StoreUtils.actions.transaction.fetchGetBanks);
   },
