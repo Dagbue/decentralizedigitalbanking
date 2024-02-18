@@ -86,6 +86,7 @@ export default {
         accountNumber: this.transferForm.creditAccountNumber,
         routingNumber: this.transferForm.creditRoutingNumber,
         transactionType: this.transactionType,
+        desc: this.transferForm.note,
         createdAt: serverTimestamp(),
       })
 

@@ -174,6 +174,14 @@
                     </td>
 
                     <td>
+                      <div class="separate-2">
+                        <div class="name-text">{{child.desc}}</div>
+                        <!--                      <p class="text-block-76" v-if="items.transactionStatus === 'VERIFIED'">{{items.transactionStatus}}</p>-->
+                        <!--                      <p class="text-block-77" v-else>{{items.transactionStatus}}</p>-->
+                      </div>
+                    </td>
+
+                    <td>
                       <div class="separate-3">
                         <p class="amount-text">{{formattedDate(child.createdAt)}}</p>
                       </div>
@@ -322,6 +330,7 @@ export default {
           accountNumber: data.accountNumber,
           routingNumber: data.routingNumber,
           transactionType: data.transactionType,
+          desc: data.desc,
           createdAt: data.createdAt,
         })
       })
@@ -604,6 +613,25 @@ td::first-letter {
 
 .bx-transfer{
   margin-right: 5px;
+}
+
+.transaction-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 650px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 @media (max-width: 500px) {

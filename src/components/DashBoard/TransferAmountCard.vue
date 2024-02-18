@@ -16,11 +16,15 @@
           <div class="margin-bottom margin-small">
             <div class="top-currency-block">
               <div class="left-block">
-                <div class="text-block-67">You are sending</div>
+                <div v-if="this.userData === 'account1'" class="text-block-67">You are sending from your checking Account</div>
+                <div v-if="this.userData === 'account2'" class="text-block-67">You are sending from your savings Account</div>
+                <div v-if="this.userData === 'account3'" class="text-block-67">You are sending from your IRA Account</div>
               </div>
               <div class="right-block">
                 <!--                        <div class="text-balance">Balance: 0 CAD</div>-->
-                <div class="text-balance">Balance:&#36;{{formatNumber(this.contacts.checkingBalance + this.contacts.savingBalance + this.contacts.IRABalance)}}.00</div>
+                <div v-if="this.userData === 'account1'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.checkingBalance)}}.00</div>
+                <div v-if="this.userData === 'account2'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.savingBalance)}}.00</div>
+                <div v-if="this.userData === 'account3'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.IRABalance)}}.00</div>
                 <!--                        <div class="text-balance" v-else >Balance: {{ userInfo.accounts[1].accountBalance | formatAmount }} NGN</div>-->
               </div>
             </div>
@@ -117,7 +121,10 @@ export default {
     },
     buttonLabel() {
       return (this.showPassword) ? "Hide" : "Show";
-    }
+    },
+    userData() {
+      return this.$store.getters.getUserData;
+    },
 
   },
 

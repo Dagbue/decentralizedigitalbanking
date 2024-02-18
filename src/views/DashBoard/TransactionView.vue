@@ -13,46 +13,17 @@
       </div>
 
 
-      <div >
+      <div>
 
         <div v-if="this.history.length > 0"  class="transaction-state">
 
           <div class="transactions _1 w-inline-block">
 
-            <!--                  <div class="txn-details" style="justify-content: space-between" v-for="items in this.paginatedItems" :key="items.key">-->
-
-            <!--                    <div class="separate-1">-->
-            <!--                      <p>-->
-            <!--                        <i class='bx bx-log-in-circle' v-if="items.drCr === 'CR'"></i>-->
-            <!--                        <i class='bx bx-log-out-circle' v-if="items.drCr === 'DR'" ></i>-->
-            <!--                      </p>-->
-            <!--                    </div>-->
-
-            <!--                    <div class="separate-2">-->
-            <!--                      <div class="name-text">{{userInfo.customerFirstName}} {{userInfo.customerLastName}}</div>-->
-            <!--&lt;!&ndash;                      <p class="text-block-76" v-if="items.transactionStatus === 'VERIFIED'">{{items.transactionStatus}}</p>&ndash;&gt;-->
-            <!--&lt;!&ndash;                      <p class="text-block-77" v-else>{{items.transactionStatus}}</p>&ndash;&gt;-->
-            <!--                    </div>-->
-
-            <!--                    <div class="separate-3">-->
-            <!--                      <p class="amount-text" >{{ items.amount | formatAmount }}-->
-            <!--                        <span v-if="items.accountNumber === accountCAD">CAD</span>-->
-            <!--                        <span v-if="items.accountNumber === accountNaira">NG</span>-->
-            <!--                      </p>-->
-
-            <!--                    </div>-->
-
-            <!--                    <div class="separate-3">-->
-            <!--                      <p class="amount-text">{{items.eventDate | formatDate }}</p>-->
-            <!--                    </div>-->
-
-            <!--                  </div>-->
-
             <table>
 
               <tbody v-for="child in paginatedItems" :key="child.key">
 
-              <tr >
+              <tr>
                 <td>
                   <div class="separate-1">
                     <i v-if="child.transactionType === 'deposit'" class='bx bx-log-in-circle' ></i>
@@ -77,11 +48,13 @@
                 <td>
                   <div class="separate-2">
                     <div class="name-text">{{child.To}}</div>
-                    <!--                      <p class="text-block-76" v-if="items.transactionStatus === 'VERIFIED'">{{items.transactionStatus}}</p>-->
-                    <!--                      <p class="text-block-77" v-else>{{items.transactionStatus}}</p>-->
                   </div>
                 </td>
-
+                <td>
+                  <div class="separate-2">
+                    <div class="name-text">{{child.desc}}</div>
+                  </div>
+                </td>
                 <td>
                   <div class="separate-3">
                     <p class="amount-text">{{formattedDate(child.createdAt)}}</p>
@@ -225,6 +198,7 @@ export default {
           accountNumber: data.accountNumber,
           routingNumber: data.routingNumber,
           transactionType: data.transactionType,
+          desc: data.desc,
           createdAt: data.createdAt,
         })
       })
@@ -344,6 +318,7 @@ table {
 
 tr{
   border-bottom: 1px solid rgba(26, 29, 39, 0.05);
+  width: 100%;
 }
 
 th {
@@ -354,6 +329,7 @@ th {
   font-size: 14px;
   /*color: #667085;*/
   text-align: center;
+  width: 100%;
 }
 
 td {
@@ -361,16 +337,36 @@ td {
   text-align: center;
   align-items: center;
   align-content: center;
-  padding: 15px 8px;
+  padding: 15px 0;
   /*letter-spacing: 1px;*/
   color: #667085;
   font-weight: 200;
-  font-size: 15px;
+  font-size: 20px;
+  max-width: 200px;
   /*border-bottom: 1px solid #E3EBF6;*/
 }
 
 td::first-letter {
   text-transform: capitalize;
+}
+
+.transaction-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 670px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 @media (max-width: 500px) {

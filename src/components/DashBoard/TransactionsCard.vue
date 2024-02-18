@@ -80,6 +80,14 @@
               </td>
 
               <td>
+                <div class="separate-2">
+                  <div class="name-text">{{child.desc}}</div>
+                  <!--                      <p class="text-block-76" v-if="items.transactionStatus === 'VERIFIED'">{{items.transactionStatus}}</p>-->
+                  <!--                      <p class="text-block-77" v-else>{{items.transactionStatus}}</p>-->
+                </div>
+              </td>
+
+              <td>
                 <div class="separate-3">
                   <p class="amount-text">{{formattedDate(child.createdAt)}}</p>
                 </div>
@@ -215,6 +223,7 @@ export default {
           accountNumber: data.accountNumber,
           routingNumber: data.routingNumber,
           transactionType: data.transactionType,
+          desc: data.desc,
           createdAt: data.createdAt,
         })
       })
@@ -333,6 +342,9 @@ li {display: inline-block; margin: 0 10px; }
   font-size: 15px;
 }
 
+
+
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -340,10 +352,10 @@ table {
 
 tr{
   border-bottom: 1px solid rgba(26, 29, 39, 0.05);
+  width: 100%;
 }
 
 th {
-
   /*background-color: #F9FBFD;*/
   padding: 10px;
   letter-spacing: 0.5px;
@@ -351,6 +363,7 @@ th {
   font-size: 14px;
   /*color: #667085;*/
   text-align: center;
+  width: 100%;
 }
 
 td {
@@ -358,11 +371,12 @@ td {
   text-align: center;
   align-items: center;
   align-content: center;
-  padding: 15px 8px;
+  padding: 15px 0;
   /*letter-spacing: 1px;*/
   color: #667085;
   font-weight: 200;
-  font-size: 15px;
+  font-size: 20px;
+  max-width: 200px;
   /*border-bottom: 1px solid #E3EBF6;*/
 }
 

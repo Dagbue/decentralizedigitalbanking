@@ -23,11 +23,12 @@
                   <div class="balance-text">&#36;{{formatNumber(this.contacts.checkingBalance)}}.00</div>
                 </div>
               </div>
-              <div class="currency-switch">
-<!--                <div class="right-block" v-if="this.userData === 'account1'">-->
-<!--                  <img src="@/assets/images/checked.svg" loading="lazy" alt="">-->
-<!--                </div>-->
-                <div class="right-block" >
+
+              <div @click="fetchData1" class="currency-switch">
+                <div class="right-block" v-if="this.userData === 'account1'">
+                  <img src="@/assets/images/checked.svg" loading="lazy" alt="">
+                </div>
+                <div class="right-block" v-else >
                   <img src="@/assets/images/Unchekced.svg" loading="lazy" alt="">
                 </div>
               </div>
@@ -42,14 +43,13 @@
               </div>
 
               <div @click="fetchData2" class="currency-switch">
-<!--                <div class="right-block" v-if="this.userData === 'account2'" >-->
-<!--                  <img src="@/assets/images/checked.svg" loading="lazy" alt="">-->
-<!--                </div>-->
-                <div class="right-block">
+                <div class="right-block" v-if="this.userData === 'account2'">
+                  <img src="@/assets/images/checked.svg" loading="lazy" alt="">
+                </div>
+                <div class="right-block" v-else >
                   <img src="@/assets/images/Unchekced.svg" loading="lazy" alt="">
                 </div>
               </div>
-
 
 
 
@@ -63,11 +63,11 @@
               </div>
             </div>
 
-            <div @click="fetchData3" class="currency-switch">
-              <!--                <div class="right-block" v-if="this.userData === 'account2'" >-->
-              <!--                  <img src="@/assets/images/checked.svg" loading="lazy" alt="">-->
-              <!--                </div>-->
-              <div class="right-block">
+            <div @click="fetchData2" class="currency-switch">
+              <div class="right-block" v-if="this.userData === 'account3'">
+                <img src="@/assets/images/checked.svg" loading="lazy" alt="">
+              </div>
+              <div class="right-block" v-else >
                 <img src="@/assets/images/Unchekced.svg" loading="lazy" alt="">
               </div>
             </div>
