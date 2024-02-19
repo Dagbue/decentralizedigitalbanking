@@ -55,8 +55,8 @@ export default {
 <style scoped>
 
 .lawrence{
-  margin-left: 29%;
-  margin-right: 29%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 @media screen and (max-width: 1286px) {
   .lawrence{
@@ -72,8 +72,8 @@ export default {
 }
 @media screen and (max-width: 767px){
   .lawrence{
-    margin-left: 6%;
-    margin-right: 6%;
+    margin-left: 2%;
+    margin-right: 2%;
   }
 }
 

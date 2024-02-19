@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import {database, auth, db} from "@/firebase/config";
+import {database, db} from "@/firebase/config";
 import {ref, onValue} from "firebase/database";
 import {collection, getDocs} from "firebase/firestore";
 
@@ -208,7 +208,7 @@ export default {
 
   },
   async created() {
-    const myUserId = auth.currentUser.uid;
+    const myUserId = localStorage.getItem('userUid');
     const HistoryRef = ref(database, myUserId + "/Transactions");
     onValue(HistoryRef, (snapshot) => {
       let _history = [];
@@ -279,6 +279,10 @@ li {display: inline-block; margin: 0 10px; }
 
 .separate-1{
   /*padding-left: 2%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .separate-2{
@@ -376,6 +380,7 @@ td {
   color: #667085;
   font-weight: 200;
   font-size: 20px;
+  min-width: 50px;
   max-width: 200px;
   /*border-bottom: 1px solid #E3EBF6;*/
 }

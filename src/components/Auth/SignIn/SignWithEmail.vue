@@ -64,7 +64,7 @@
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import {getFirestore, collection, getDocs} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 import {getAuth} from "firebase/auth";
 import Swal from "sweetalert2";
 
@@ -118,7 +118,7 @@ export default {
       const error = ref(null)
       const store = useStore()
       const router = useRouter()
-      const db = getFirestore();
+      // const db = getFirestore();
       const auth = getAuth();
       // const userData2 = ref('account1')
       // const userData3 = ref('account2')
@@ -129,21 +129,14 @@ export default {
             password: password.value
           })
           // noinspection JSUnresolvedFunction,JSCheckFunctionSignatures
-          const querySnapshot = await getDocs(collection(db, auth.currentUser.email));
-          querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-            console.log (doc.data())
-          });
+          // const querySnapshot = await getDocs(collection(db, auth.currentUser.email));
+          // querySnapshot.forEach((doc) => {
+          //   console.log(`${doc.id} => ${doc.data()}`);
+          //   console.log (doc.data())
+          // });
 
           localStorage.userEmail = email.value;
-
-          // if ( email.value === "14lwcoast@gmail.com") {
-          //   await store.dispatch('fetchUserData', userData2);
-          // } else if ( email.value === "thomasadam2051@gmail.com") {
-          //   await store.dispatch('fetchUserData', userData3);
-          // } else {
-          //   await store.dispatch('fetchUserData', userData2);
-          // }
+          localStorage.userUid = auth.currentUser.uid;
 
           await router.push('/loginSuccess');
         }

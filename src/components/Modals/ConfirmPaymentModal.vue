@@ -14,7 +14,7 @@
         <div class="payment-details">
           <div class="payment-details-row">
             <div class="text-block-72">From</div>
-            <div class="text-block-73 lawrence">{{this.contacts.firstName}} {{this.contacts.lastName}}</div>
+            <div class="text-block-73 lawrence">{{this.transferForm.accDebit}}</div>
           </div>
           <div class="payment-details-row">
             <div class="text-block-72">To</div>

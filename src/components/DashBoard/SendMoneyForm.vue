@@ -138,22 +138,15 @@
 
         <input   type="number"  class="input-field w-input" v-model="creditAccountNumber" maxlength="256" name="field-3" data-name="Field 3" placeholder="Enter account number" id="field-3" required="">
 
-<!--        <div v-if="passwordErrors.length" class="error-messages">-->
-<!--          <ul>-->
-<!--            <li v-for="error in passwordErrors" :key="error">{{ error }}</li>-->
-<!--          </ul>-->
-<!--        </div>-->
 
         <input type="number" v-model="creditRoutingNumber"  class="input-field w-input" maxlength="256" name="field-3" data-name="Field 3" placeholder="Enter routing number" id="field-3" required="">
 
-<!--        <select id="field" name="field" required=""  data-name="Field" class="input-field select-field w-select" >-->
-<!--          <option value="">Select account to debit</option>-->
-<!--          <option value="checking">checking account</option>-->
-<!--          <option value="saving">saving account</option>-->
-<!--          <option value="IRA">IRA account</option>-->
-<!--        </select>-->
-
-<!--        <p class="input-field w-input" maxlength="256" name="field-3" data-name="Field 3" placeholder="Account Name" id="field-3"></p>-->
+        <select id="field" name="field" required="" v-model="accDebit"  data-name="Field" class="input-field select-field w-select" >
+          <option value="">Select Account To Debit</option>
+          <option value="Checking Account">Checking Account</option>
+          <option value="Savings Account">Savings Account</option>
+          <option value="DDB IRA">DDB IRA</option>
+        </select>
 
         <div class="save-beneficiary-wrapper">
           <div>Save beneficiary</div>
@@ -179,6 +172,7 @@ export default {
       creditRoutingNumber: "",
       isChecked: false,
       passwordErrors: [],
+      accDebit: "",
     }
   },
   computed:{
@@ -209,6 +203,7 @@ export default {
         creditAccountNumber: this.creditAccountNumber,
         creditRoutingNumber: this.creditRoutingNumber,
         isChecked: this.isChecked,
+        accDebit: this.accDebit,
       });
       await this.$router.push("/transferAmountView");
       window.scrollTo(0, 0);

@@ -16,16 +16,13 @@
           <div class="margin-bottom margin-small">
             <div class="top-currency-block">
               <div class="left-block">
-                <div v-if="this.userData === 'account1'" class="text-block-67">You are sending from your checking Account</div>
-                <div v-if="this.userData === 'account2'" class="text-block-67">You are sending from your savings Account</div>
-                <div v-if="this.userData === 'account3'" class="text-block-67">You are sending from your IRA Account</div>
+                <div  class="text-block-67">You are sending from your {{this.transferForm.accDebit}}</div>
               </div>
               <div class="right-block">
                 <!--                        <div class="text-balance">Balance: 0 CAD</div>-->
-                <div v-if="this.userData === 'account1'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.checkingBalance)}}.00</div>
-                <div v-if="this.userData === 'account2'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.savingBalance)}}.00</div>
-                <div v-if="this.userData === 'account3'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.IRABalance)}}.00</div>
-                <!--                        <div class="text-balance" v-else >Balance: {{ userInfo.accounts[1].accountBalance | formatAmount }} NGN</div>-->
+                <div v-if="this.transferForm.accDebit === 'Checking Account'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.checkingBalance)}}.00</div>
+                <div v-if="this.transferForm.accDebit === 'Savings Account'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.savingBalance)}}.00</div>
+                <div v-if="this.transferForm.accDebit === 'DDB IRA'" class="text-balance">Balance:&#36;{{formatNumber(this.contacts.IRABalance)}}.00</div>
               </div>
             </div>
           </div>
@@ -155,6 +152,7 @@ export default {
          creditAccountNumber: this.transferForm.creditAccountNumber,
          creditRoutingNumber: this.transferForm.creditRoutingNumber,
          isChecked: this.transferForm.isChecked,
+         accDebit: this.transferForm.accDebit,
          amountNGN: this.amountNGN,
          note: this.note,
       });

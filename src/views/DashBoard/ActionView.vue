@@ -227,7 +227,7 @@
 import DashboardLayout from "@/components/Layout/DashboardLayout.vue";
 import NavBar from "@/components/DashBoard/NavBar.vue";
 import {collection, getDocs} from "firebase/firestore";
-import {auth, database, db} from "@/firebase/config";
+import {database, db} from "@/firebase/config";
 import {onValue, ref} from "firebase/database";
 
 export default {
@@ -315,7 +315,7 @@ export default {
 
   },
   async created() {
-    const myUserId = auth.currentUser.uid;
+    const myUserId = localStorage.getItem('userUid');
     const HistoryRef = ref(database, myUserId + "/Transactions");
     onValue(HistoryRef, (snapshot) => {
       let _history = [];
@@ -510,6 +510,10 @@ li {display: inline-block; margin: 0 10px; }
 }
 
 .separate-1{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   /*padding-left: 2%;*/
 }
 
@@ -603,7 +607,9 @@ td {
   /*letter-spacing: 1px;*/
   color: #667085;
   font-weight: 200;
-  font-size: 15px;
+  font-size: 20px;
+  min-width: 50px;
+  max-width: 200px;
   /*border-bottom: 1px solid #E3EBF6;*/
 }
 
@@ -620,7 +626,7 @@ td::first-letter {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  max-width: 650px;
+  max-width: 670px;
   margin-right: auto;
   margin-left: auto;
   -webkit-box-orient: vertical;

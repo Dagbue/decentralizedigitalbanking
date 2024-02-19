@@ -1,3 +1,4 @@
+<!--suppress JSUnresolvedFunction -->
 <template>
 <dashboard-layout>
   <div class="transaction-header-wrapper">
@@ -93,8 +94,8 @@
 import DashboardLayout from "@/components/Layout/DashboardLayout.vue";
 import NavBar from "@/components/DashBoard/NavBar.vue";
 import TransactionFilterCard from "@/components/DashBoard/TransactionFilterCard.vue";
-import {auth, database, db} from "@/firebase/config";
-import {onValue, ref} from "firebase/database";
+import {database, db} from "@/firebase/config";
+import {onValue, ref, orderByChild, query} from "firebase/database";
 import {collection, getDocs} from "firebase/firestore";
 // import {collection, getDocs} from "firebase/firestore";
 // import {db} from "@/firebase/config";
@@ -183,8 +184,8 @@ export default {
 
   },
   async created() {
-    const myUserId = auth.currentUser.uid;
-    const HistoryRef = ref(database, myUserId + "/Transactions");
+    const myUserId = localStorage.getItem('userUid');
+    const HistoryRef = query(ref(database, myUserId + "/Transactions", orderByChild('createdAt')));
     onValue(HistoryRef, (snapshot) => {
       let _history = [];
       snapshot.forEach((child) => {
@@ -244,6 +245,13 @@ export default {
 </script>
 
 <style scoped>
+
+.separate-1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
 
 .separate-2{
   display: block;
@@ -342,6 +350,7 @@ td {
   color: #667085;
   font-weight: 200;
   font-size: 20px;
+  min-width: 50px;
   max-width: 200px;
   /*border-bottom: 1px solid #E3EBF6;*/
 }
@@ -355,7 +364,7 @@ td::first-letter {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  max-width: 670px;
+  max-width: 680px;
   margin-right: auto;
   margin-left: auto;
   -webkit-box-orient: vertical;
