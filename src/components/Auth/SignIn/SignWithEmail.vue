@@ -39,15 +39,7 @@
 
 
         <div class="submit">
-          <button class="button max-width-full w-button">Login</button>
-          <div>
-            <!-- Your content goes here -->
-            <div v-if="isLoading" class="loader-overlay">
-              <!-- Loader animation or message goes here -->
-              <div class="loader"></div>
-              <!-- You can customize the loader appearance as needed -->
-            </div>
-          </div>
+          <base-button :loading="loading">Login</base-button>
         </div>
 
       </form>
@@ -67,15 +59,16 @@ import { useRouter } from 'vue-router'
 import {collection, getDocs} from "firebase/firestore";
 import {getAuth} from "firebase/auth";
 import Swal from "sweetalert2";
+import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 
 export default {
   name: "SignWithEmail",
+  components: {BaseButton},
   data(){
     return {
       showPassword2: false,
       userData2: "account1",
       userData3: "account2",
-      isLoading: false,
     }
   },
   methods:{
@@ -118,12 +111,13 @@ export default {
       const error = ref(null)
       const store = useStore()
       const router = useRouter()
-      // const db = getFirestore();
+      const loading = ref(false);
       const auth = getAuth();
       // const userData2 = ref('account1')
       // const userData3 = ref('account2')
       const handleSubmit = async () => {
         try {
+          loading.value = true;
           await store.dispatch('login', {
             email: email.value,
             password: password.value
@@ -147,11 +141,13 @@ export default {
             title: 'error',
             text: err.message,
           });
+        } finally {
+          loading.value = false;
         }
       }
       return {
         handleSubmit, email,
-        password, error,
+        password, error,loading,
         user: computed(() => store.state.user),
         getDocs, collection }
   }

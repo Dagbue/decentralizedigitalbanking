@@ -42,9 +42,7 @@
           </div>
         </div>
         <div class="margin-top margin-medium">
-          <!--            <a href="#" @click="sendToNGNAccount"  class="button w-button">Proceed with payment</a>-->
-<!--          <base-button :loading="loading"></base-button>-->
-          <button class="button max-width-full w-button">Proceed with payment</button>
+          <base-button :loading="loading" >Proceed with payment</base-button>
         </div>
         <div class="margin-top margin-small">
           <a href="#"  @click="cancel" class="button is-secondary w-button">Cancel payment</a>
@@ -59,14 +57,18 @@ import {collection, doc, getDocs, setDoc,increment} from "firebase/firestore";
 import Swal from "sweetalert2";
 import {  ref, set, push, serverTimestamp } from "firebase/database";
 import {database, auth ,db} from "@/firebase/config";
+import BaseButton from "@/components/BaseComponents/buttons/BaseButton.vue";
 
 export default {
   name: "ConfirmPaymentModal",
+  components: {BaseButton},
   emits: ['close'],
   data() {
     return {
       contacts: [],
       transactionType: "withdrawal",
+      loading: false,
+      error: ""
     };
   },
   computed: {
@@ -75,44 +77,60 @@ export default {
     },
   },
   methods: {
+
     async sendToNGNAccount() {
-      const myUserId = auth.currentUser.uid;
-      const Deposit = ref(database, myUserId + "/Transactions");
-      const newDeposit = push(Deposit);
-      await set(newDeposit, {
-        To: this.transferForm.creditAccountName,
-        Amount: this.transferForm.amountNGN,
-        bankName: this.transferForm.bankName,
-        accountNumber: this.transferForm.creditAccountNumber,
-        routingNumber: this.transferForm.creditRoutingNumber,
-        transactionType: this.transactionType,
-        desc: this.transferForm.note,
-        createdAt: serverTimestamp(),
-      })
+      try {
+        this.loading = true;
+        // noinspection JSUnresolvedFunction,JSCheckFunctionSignatures
+        const myUserId = auth.currentUser.uid;
+        const Deposit = ref(database, myUserId + "/Transactions");
+        const newDeposit = push(Deposit);
+        await set(newDeposit, {
+          To: this.transferForm.creditAccountName,
+          Amount: this.transferForm.amountNGN,
+          bankName: this.transferForm.bankName,
+          accountNumber: this.transferForm.creditAccountNumber,
+          routingNumber: this.transferForm.creditRoutingNumber,
+          transactionType: this.transactionType,
+          desc: this.transferForm.note,
+          createdAt: serverTimestamp(),
+        })
 
-      await setDoc(doc(db, localStorage.getItem('userEmail'), "USER"), {
-        withdrawAmount: increment(this.transferForm.amountNGN),
-      },{merge: true})
-          .then(() => {
-            console.log('saved')
-          });
+        await setDoc(doc(db, localStorage.getItem('userEmail'), "USER"), {
+          withdrawAmount: increment(this.transferForm.amountNGN),
+        },{merge: true})
+            .then(() => {
+              console.log('saved')
+            });
 
-      await setDoc(doc(db, "listOfUsers", localStorage.getItem('userEmail')), {
-        withdrawAmount: increment(this.transferForm.amountNGN),
-      },{merge: true})
-          .then(() => {
-            console.log('saved')
-          });
+        await setDoc(doc(db, "listOfUsers", localStorage.getItem('userEmail')), {
+          withdrawAmount: increment(this.transferForm.amountNGN),
+        },{merge: true})
+            .then(() => {
+              console.log('saved')
+            });
 
-      await Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Transfer Successful!',
-      });
-      await this.$emit('close')
-      await this.$router.push("/homeView");
-      window.scrollTo(0, 0);
+        await Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Transfer Successful!',
+        });
+        await this.$emit('close')
+        await this.$router.push("/homeView");
+        window.scrollTo(0, 0);
+      }
+      catch (err) {
+        this.error = err.message
+        await Swal.fire({
+          icon: 'error',
+          title: 'error',
+          text: err.message,
+        });
+      } finally {
+        this.loading = false;
+      }
     },
+
      cancel() {
        this.$emit('close')
        this.$router.push("/addRecipientView");
