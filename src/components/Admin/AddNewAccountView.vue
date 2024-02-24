@@ -372,22 +372,24 @@
 
           <div class="input-form-2">
             <select
-                disabled
+                style="width: 380px;"
                 class="input-form-3"
                 aria-required="required"
                 data-name="Field"
-                placeholder="Select Country"
-                aria-placeholder="Select Country"
+                placeholder="Choose Account Status"
+                aria-placeholder="Choose Account Status"
                 v-model="accountStatus"
             >
-              <option selected disabled value="">Choose Country</option>
-              <option :value="null" disabled>Select Country</option>
+              <option selected disabled value="">Choose Account Status</option>
+              <option :value="null" disabled>Choose Account Status</option>
               <option value="active">active</option>
               <option value="pending">pending</option>
               <option value="blocked">blocked</option>
 
             </select>
           </div>
+
+
 
         </form>
 

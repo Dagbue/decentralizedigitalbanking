@@ -45,6 +45,27 @@
 
     </div>
 
+    <div class="section-1" v-show="this.contacts.accountStatus === 'blocked'">
+
+
+      <div class="section-2" @click="topUp">
+        <img src="@/assets/images/plus-1_1plus 1.png" loading="lazy" width="20" alt="" >
+        <p class="action-button-text">Deposit</p>
+      </div>
+
+      <div class="section-2" @click="showDialog3">
+        <img src="@/assets/images/transfer_1transfer.png" loading="lazy" width="20" alt="" >
+        <p class="action-button-text">Transfer</p>
+      </div>
+
+
+      <div class="section-2" @click="showDialog3" >
+        <img src="@/assets/images/coin_1coin.png" loading="lazy" width="20" alt="" >
+        <p class="action-button-text">Bill Pay</p>
+      </div>
+
+    </div>
+
 
   </section>
 </template>

@@ -13,7 +13,7 @@
           <div class="margin-bottom margin-small">
             <div class="dashboard-section-header">
               <div style="margin-top: 3%; margin-bottom: 3%" class="text-style-allcaps">Your Accounts</div>
-              <div @click="onPostClick" class="sep">
+              <div @click="onPostClick" v-show="this.contacts.accountStatus === 'active'" class="sep">
 <!--                <div class="progress-indicator"></div>-->
                 <i class='bx bx-transfer'></i>
                 <p>Transfer</p>
@@ -361,6 +361,7 @@ export default {
         'isPinSet' : doc.data().isPinSet,
         'pin' : doc.data().pin,
         'country' : doc.data().country,
+        'accountStatus': doc.data().accountStatus,
         'createdAt': doc.data().createdAt
       }
       this.contacts = data

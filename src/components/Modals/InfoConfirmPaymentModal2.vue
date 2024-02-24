@@ -6,9 +6,10 @@
         <!--            <div class="text-block-73 lawrence">Kindly complete the KYC process to proceed with Payment</div>-->
         <div class="image-wrapper"><img src="@/assets/images/clock.png" loading="lazy" width="161" alt=""></div>
 
-        <div class="text-block-73 lawrence">Your Account is Limited</div>
+        <div class="text-block-73 lawrence">Your Account is {{this.contacts.accountStatus}}</div>
 
-        <div class="text-block-72 lawrence"> This action is not allowed at the moment.</div>
+        <div class="text-block-72 lawrence"> This action is not allowed at the moment contact support
+          for further Assistance.</div>
 
 <!--        <div class="margin-top margin-medium">-->
 <!--          <a href="#" @click="proceed"  class="button w-button">Make Deposit</a>-->
@@ -23,11 +24,19 @@
 </template>
 
 <script>
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "@/firebase/config";
+
 export default {
   name: "InfoConfirmPaymentModal2",
   emits: ['close'],
   computed: {
 
+  },
+  data() {
+    return {
+      contacts: [],
+    };
   },
   methods: {
     proceed(){
@@ -35,6 +44,39 @@ export default {
       this.$router.push("/fundWalletView");
       window.scrollTo(0, 0);
     },
+  },
+
+  async created() {
+    const querySnapshot = await getDocs(collection(db, localStorage.getItem('userEmail')));
+    querySnapshot.forEach((doc) => {
+      let data = {
+        'id': doc.id,
+        'email' : doc.data().email,
+        'password' : doc.data().password,
+        'checkingBalance' : doc.data().checkingBalance,
+        'savingBalance' : doc.data().savingBalance,
+        'IRABalance' : doc.data().IRABalance,
+        'withdrawAmount' : doc.data().withdrawAmount,
+        'firstName' : doc.data().firstName,
+        'lastName' : doc.data().lastName,
+        'address' : doc.data().address,
+        'state' : doc.data().state,
+        'city' : doc.data().city,
+        'zipCode' : doc.data().zipCode,
+        'accType' : doc.data().accType,
+        'accNumber' : doc.data().accNumber,
+        'accTier' : doc.data().accTier,
+        'ssn' : doc.data().ssn,
+        'dob' : doc.data().dob,
+        'isPinSet' : doc.data().isPinSet,
+        'pin' : doc.data().pin,
+        'country' : doc.data().country,
+        'accountStatus': doc.data().accountStatus,
+        'createdAt': doc.data().createdAt
+      }
+      this.contacts = data
+    });
+
   },
 }
 </script>

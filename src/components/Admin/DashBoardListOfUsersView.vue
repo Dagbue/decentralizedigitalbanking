@@ -149,37 +149,6 @@ export default {
       }
     },
 
-    async populate() {
-      const querySnapshot = await getDocs(collection(db, "listOfUsers"));
-      querySnapshot.forEach((doc) => {
-        let data = {
-          'id': doc.id,
-          'email': doc.data().email,
-          'password': doc.data().password,
-          'checkingBalance': doc.data().checkingBalance,
-          'savingBalance': doc.data().savingBalance,
-          'IRABalance': doc.data().IRABalance,
-          'firstName': doc.data().firstName,
-          'lastName': doc.data().lastName,
-          'address': doc.data().address,
-          'state': doc.data().state,
-          'city': doc.data().city,
-          'zipCode': doc.data().zipCode,
-          'accType': doc.data().accType,
-          'accNumber': doc.data().accNumber,
-          'accTier': doc.data().accTier,
-          'ssn': doc.data().ssn,
-          'dob': doc.data().dob,
-          'isPinSet': doc.data().isPinSet,
-          'pin': doc.data().pin,
-          'country': doc.data().country,
-          'accountStatus': doc.data().accountStatus,
-          'createdAt': doc.data().createdAt
-        }
-        this.contacts.push(data)
-      })
-    },
-
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
@@ -259,7 +228,7 @@ export default {
 
 
     async active() {
-      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+      await setDoc(doc(db, this.SelectEmail, "USER"), {
         accountStatus : this.accountStatus1,
 
       },{merge: true})
@@ -267,7 +236,7 @@ export default {
             console.log('saved')
           });
 
-      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+      await setDoc(doc(db, "listOfUsers", this.SelectEmail), {
         accountStatus : this.accountStatus1,
       },{merge: true})
 
@@ -289,7 +258,7 @@ export default {
     },
 
     async pending() {
-      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+      await setDoc(doc(db, this.SelectEmail, "USER"), {
         accountStatus : this.accountStatus2,
 
       },{merge: true})
@@ -297,7 +266,7 @@ export default {
             console.log('saved')
           });
 
-      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+      await setDoc(doc(db, "listOfUsers", this.SelectEmail), {
         accountStatus : this.accountStatus2,
       },{merge: true})
 
@@ -319,7 +288,7 @@ export default {
     },
 
     async blocked() {
-      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+      await setDoc(doc(db, this.SelectEmail, "USER"), {
         accountStatus : this.accountStatus3,
 
       },{merge: true})
@@ -327,7 +296,7 @@ export default {
             console.log('saved')
           });
 
-      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+      await setDoc(doc(db, "listOfUsers", this.SelectEmail), {
         accountStatus : this.accountStatus3,
       },{merge: true})
 
