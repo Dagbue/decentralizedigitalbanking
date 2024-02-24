@@ -18,7 +18,8 @@
 <!--    </a>-->
 
     <a data-w-id="b4a46994-6187-287f-f799-9f553a35b0df" href="#" @click="showDialog" class="link-block w-inline-block">
-      <img src="@/assets/images/checked.svg" loading="lazy" width="16" alt="">
+      <img src="@/assets/images/checked.svg" v-if="this.contacts.accountStatus === 'active'" loading="lazy" width="16" alt="">
+      <img src="@/assets/images/checked-pendding.svg" v-if="this.contacts.accountStatus === 'pending'" loading="lazy" width="16" alt="">
       <div class="dropdown-text dashboard text-size-small text-weight-medium">{{this.contacts.firstName}} {{this.contacts.lastName}}</div>
 <!--      <div v-show="this.userData === 'account2'" class="dropdown-text dashboard text-size-small text-weight-medium">Hi {{this.contacts.AccountName2}}</div>-->
       <img src="@/assets/images/arrow-down.svg" loading="lazy" width="16" alt="">
@@ -75,6 +76,7 @@ export default {
         'isPinSet' : doc.data().isPinSet,
         'pin' : doc.data().pin,
         'country' : doc.data().country,
+        'accountStatus': doc.data().accountStatus,
         'createdAt': doc.data().createdAt
       }
       this.contacts = data

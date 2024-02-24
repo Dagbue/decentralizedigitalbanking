@@ -36,6 +36,7 @@
             <th>Country</th>
             <th>Password</th>
             <th>Date Created</th>
+            <th>Account Status</th>
           </tr>
 
           <tbody v-for="child in paginatedItems" :key="child.key">
@@ -46,6 +47,7 @@
               <td>{{child.country}}</td>
               <td>{{child.password}}</td>
               <td>{{child.createdAt.toDate().toDateString()}}</td>
+            <td>{{child.accountStatus}}</td>
           </tr>
           </tbody>
 
@@ -60,6 +62,7 @@
         </div>
 
         <form>
+          <p class="header">Update Account Status</p>
           <div class="fields-alpha-2">
             <label class="fields-alpha-2-label">Select Email</label>
             <select class="select-form" v-model="SelectEmail" aria-placeholder="Select Value" required>
@@ -67,7 +70,9 @@
                 {{ option.email }}
               </option>
             </select>
-            <button class="btn" @click="update">Delete User</button>
+            <p class="btn" @click="active">Active</p>
+            <p class="btn" @click="pending">Pending</p>
+            <p class="btn" @click="blocked">Blocked</p>
           </div>
         </form>
 
@@ -78,8 +83,8 @@
 </template>
 
 <script>
-import {collection, getDocs, doc,} from "firebase/firestore";
-import {db} from "@/firebase/config";
+import {collection, getDocs, doc, setDoc} from "firebase/firestore";
+import {auth, db} from "@/firebase/config";
 import {deleteDoc,getFirestore} from "@firebase/firestore";
 import Swal from "sweetalert2";
 export default {
@@ -90,6 +95,9 @@ export default {
       SelectEmail: "",
       currentPage: 1,
       itemsPerPage: 10,
+      accountStatus1: "active",
+      accountStatus2: "pending",
+      accountStatus3: "blocked",
     }
   },
   computed:{
@@ -127,6 +135,7 @@ export default {
         'isPinSet' : doc.data().isPinSet,
         'pin' : doc.data().pin,
         'country' : doc.data().country,
+        'accountStatus' : doc.data().accountStatus,
         'createdAt': doc.data().createdAt
       }
       this.contacts.push(data)
@@ -138,6 +147,37 @@ export default {
       if (this.currentPage > 1) {
         this.currentPage--;
       }
+    },
+
+    async populate() {
+      const querySnapshot = await getDocs(collection(db, "listOfUsers"));
+      querySnapshot.forEach((doc) => {
+        let data = {
+          'id': doc.id,
+          'email': doc.data().email,
+          'password': doc.data().password,
+          'checkingBalance': doc.data().checkingBalance,
+          'savingBalance': doc.data().savingBalance,
+          'IRABalance': doc.data().IRABalance,
+          'firstName': doc.data().firstName,
+          'lastName': doc.data().lastName,
+          'address': doc.data().address,
+          'state': doc.data().state,
+          'city': doc.data().city,
+          'zipCode': doc.data().zipCode,
+          'accType': doc.data().accType,
+          'accNumber': doc.data().accNumber,
+          'accTier': doc.data().accTier,
+          'ssn': doc.data().ssn,
+          'dob': doc.data().dob,
+          'isPinSet': doc.data().isPinSet,
+          'pin': doc.data().pin,
+          'country': doc.data().country,
+          'accountStatus': doc.data().accountStatus,
+          'createdAt': doc.data().createdAt
+        }
+        this.contacts.push(data)
+      })
     },
 
     nextPage() {
@@ -180,6 +220,132 @@ export default {
               text: error.message,
             });
           })
+    },
+
+    async update2() {
+      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+        // accountStatus : accountStatus.value,
+
+      },{merge: true})
+          .then(() => {
+            console.log('saved')
+          });
+
+      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+        // accountStatus : accountStatus.value,
+      },{merge: true})
+          .then(() => {
+            console.log('saved')
+          });
+
+      const docRef2 = doc(db, this.SelectEmail, "USER");
+      await deleteDoc(docRef2)
+          .then(async () => {
+            await Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'User Deleted Successfully!',
+            });
+            await location.reload();
+          })
+          .catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'error',
+              text: error.message,
+            });
+          })
+    },
+
+
+    async active() {
+      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+        accountStatus : this.accountStatus1,
+
+      },{merge: true})
+          .then(() => {
+            console.log('saved')
+          });
+
+      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+        accountStatus : this.accountStatus1,
+      },{merge: true})
+
+          .then(async () => {
+            await Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'User status updated Successfully!',
+            });
+          })
+          .catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'error',
+              text: error.message,
+            });
+          })
+      await location.reload();
+    },
+
+    async pending() {
+      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+        accountStatus : this.accountStatus2,
+
+      },{merge: true})
+          .then(() => {
+            console.log('saved')
+          });
+
+      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+        accountStatus : this.accountStatus2,
+      },{merge: true})
+
+          .then(async () => {
+            await Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'User status updated Successfully!',
+            });
+          })
+          .catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'error',
+              text: error.message,
+            });
+          })
+      await location.reload();
+    },
+
+    async blocked() {
+      await setDoc(doc(db, auth.currentUser.email, "USER"), {
+        accountStatus : this.accountStatus3,
+
+      },{merge: true})
+          .then(() => {
+            console.log('saved')
+          });
+
+      await setDoc(doc(db, "listOfUsers", auth.currentUser.email), {
+        accountStatus : this.accountStatus3,
+      },{merge: true})
+
+          .then(async () => {
+            await Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'User status updated Successfully!',
+            });
+          })
+          .catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'error',
+              text: error.message,
+            });
+          })
+      await location.reload();
     },
   }
 }
@@ -377,8 +543,8 @@ td {
   background-color: #818a91;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 10%;
+  margin-right: 10%;
   border-radius: 5px;
   margin-top: 2%;
   display: flex;
@@ -401,8 +567,8 @@ td {
   /*margin-left: auto;*/
   /*margin-right: auto;*/
   text-align: center;
-  width: 25%;
-  font-size: 17px;
+  width: 100px;
+  font-size: 12px;
   border-radius: 5px;
   transition: all 0.3s ease-in;
 }
@@ -458,5 +624,11 @@ select {
   color: #667085;
   font-weight: 200;
   font-size: 13px;
+}
+
+.header{
+  text-align: center;
+  margin-top: 3%;
+  font-size: 18px;
 }
 </style>

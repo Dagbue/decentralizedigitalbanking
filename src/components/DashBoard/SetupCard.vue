@@ -130,6 +130,7 @@ export default {
         'isPinSet' : doc.data().isPinSet,
         'pin' : doc.data().pin,
         'country' : doc.data().country,
+        'accountStatus': doc.data().accountStatus,
         'createdAt': doc.data().createdAt
       }
       this.contacts = data

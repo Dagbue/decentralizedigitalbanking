@@ -329,7 +329,6 @@
 // import {ref} from "vue";
 // import {useStore} from "vuex";
 // import { useRouter } from 'vue-router'
-// import {sendEmailVerification} from "firebase/auth";
 // import {doc, setDoc,} from "firebase/firestore";
 // import { set, push, } from "firebase/database";
 // import Swal from "sweetalert2";
@@ -391,6 +390,7 @@ export default {
     toggleShow2() {
       this.showPassword2 = !this.showPassword2;
     },
+
 
     // initiateEnrollment(event){
     //   this.validatePassword();

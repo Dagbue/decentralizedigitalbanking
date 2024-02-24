@@ -8,8 +8,7 @@
 
         <div class="text-block-73 lawrence">Your Account is Limited</div>
 
-        <div class="text-block-72 lawrence"> This action is not allowed at the moment.Please upgrade your account
-          to activate this feature.</div>
+        <div class="text-block-72 lawrence"> This action is not allowed at the moment.</div>
 
 <!--        <div class="margin-top margin-medium">-->
 <!--          <a href="#" @click="proceed"  class="button w-button">Make Deposit</a>-->

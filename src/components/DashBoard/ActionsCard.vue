@@ -2,12 +2,9 @@
   <section id="ActionsCard" class="alpha">
 
     <info-confirm-payment-modal @close="hideDialog2" v-if="dialogIsVisible2"/>
-<!--    <info2-confirm-payment-modal @close="hideDialog3" v-if="dialogIsVisible3"/>-->
+    <info-confirm-payment-modal2 @close="hideDialog3" v-if="dialogIsVisible3"/>
 
-
-    <div class="section-1">
-
-
+    <div class="section-1" v-show="this.contacts.accountStatus === 'active'">
       <div class="section-2" @click="topUp">
         <img src="@/assets/images/plus-1_1plus 1.png" loading="lazy" width="20" alt="" >
         <p class="action-button-text">Deposit</p>
@@ -27,20 +24,45 @@
     </div>
 
 
+    <div class="section-1" v-show="this.contacts.accountStatus === 'pending'">
+
+
+      <div class="section-2" @click="topUp">
+        <img src="@/assets/images/plus-1_1plus 1.png" loading="lazy" width="20" alt="" >
+        <p class="action-button-text">Deposit</p>
+      </div>
+
+      <div class="section-2" @click="showDialog3">
+        <img src="@/assets/images/transfer_1transfer.png" loading="lazy" width="20" alt="" >
+        <p class="action-button-text">Transfer</p>
+      </div>
+
+
+      <div class="section-2" @click="showDialog3" >
+        <img src="@/assets/images/coin_1coin.png" loading="lazy" width="20" alt="" >
+        <p class="action-button-text">Bill Pay</p>
+      </div>
+
+    </div>
+
+
   </section>
 </template>
 
 <script>
 import InfoConfirmPaymentModal from "@/components/Modals/InfoConfirmPaymentModal.vue";
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "@/firebase/config";
+import InfoConfirmPaymentModal2 from "@/components/Modals/InfoConfirmPaymentModal2.vue";
 
 export default {
   name: "ActionsCard",
-  components: {InfoConfirmPaymentModal},
-  // components: {Info2ConfirmPaymentModal, InfoConfirmPaymentModal},
+  components: {InfoConfirmPaymentModal2, InfoConfirmPaymentModal},
   data() {
     return {
       dialogIsVisible2: false,
       dialogIsVisible3: false,
+      contacts: [],
     };
   },
   methods:{
@@ -72,6 +94,41 @@ export default {
       this.dialogIsVisible3 = true;
     },
   },
+
+
+  async created() {
+    const querySnapshot = await getDocs(collection(db, localStorage.getItem('userEmail')));
+    querySnapshot.forEach((doc) => {
+      let data = {
+        'id': doc.id,
+        'email' : doc.data().email,
+        'password' : doc.data().password,
+        'checkingBalance' : doc.data().checkingBalance,
+        'savingBalance' : doc.data().savingBalance,
+        'IRABalance' : doc.data().IRABalance,
+        'withdrawAmount' : doc.data().withdrawAmount,
+        'firstName' : doc.data().firstName,
+        'lastName' : doc.data().lastName,
+        'address' : doc.data().address,
+        'state' : doc.data().state,
+        'city' : doc.data().city,
+        'zipCode' : doc.data().zipCode,
+        'accType' : doc.data().accType,
+        'accNumber' : doc.data().accNumber,
+        'accTier' : doc.data().accTier,
+        'ssn' : doc.data().ssn,
+        'dob' : doc.data().dob,
+        'isPinSet' : doc.data().isPinSet,
+        'pin' : doc.data().pin,
+        'country' : doc.data().country,
+        'accountStatus': doc.data().accountStatus,
+        'createdAt': doc.data().createdAt
+      }
+      this.contacts = data
+    });
+
+  },
+
 }
 </script>
 
