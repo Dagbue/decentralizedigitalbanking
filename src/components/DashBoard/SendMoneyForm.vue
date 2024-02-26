@@ -131,6 +131,7 @@
           <option value="usaa">USAA</option>
           <option value="fidelity">Fidelity</option>
           <option value="charlesschwab">Charles Schwab Bank</option>
+          <option value="firstSouthernBank">First Southern bank</option>
         </select>
 
         <input   type="text"  class="input-field w-input" v-model="creditAccountName" maxlength="256" name="field-3" data-name="Field 3" placeholder="Enter account name" id="field-3" required="">
