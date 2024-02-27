@@ -11,7 +11,7 @@
     </div>
 
     <div class="form-alpha">
-      <form >
+      <form @submit.prevent="next">
 
         <div class="input-form-2">
           <input type="email"   placeholder="Enter your email" class="input-form-1" required="required" />
@@ -39,7 +39,7 @@
 
 
         <div class="submit">
-          <button @click="next" class="button max-width-full w-button">Login</button>
+          <button  class="button max-width-full w-button">Login</button>
         </div>
 
       </form>
