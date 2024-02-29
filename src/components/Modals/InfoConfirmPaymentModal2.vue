@@ -6,11 +6,12 @@
         <!--            <div class="text-block-73 lawrence">Kindly complete the KYC process to proceed with Payment</div>-->
         <div class="image-wrapper"><img src="@/assets/images/clock.png" loading="lazy" width="161" alt=""></div>
 
-        <div class="text-block-73 lawrence">Your Account is {{this.contacts.accountStatus}}</div>
+        <div class="text-block-73 lawrence">Your Account is Blocked</div>
 
-        <div class="text-block-72 lawrence"> This action is not allowed at the moment contact support
-          for further Assistance.</div>
-
+        <div class="text-block-72 lawrence">
+          This Action is restricted 🚫  at the moment, Biometric
+          verification required
+        </div>
 <!--        <div class="margin-top margin-medium">-->
 <!--          <a href="#" @click="proceed"  class="button w-button">Make Deposit</a>-->
 <!--          &lt;!&ndash;          <base-button :loading="loading">Proceed to KYC</base-button>&ndash;&gt;-->

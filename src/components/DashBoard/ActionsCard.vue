@@ -3,6 +3,7 @@
 
     <info-confirm-payment-modal @close="hideDialog2" v-if="dialogIsVisible2"/>
     <info-confirm-payment-modal2 @close="hideDialog3" v-if="dialogIsVisible3"/>
+    <info-confirm-payment-modal5  @close="hideDialog5" v-if="dialogIsVisible5"/>
 
     <div class="section-1" v-show="this.contacts.accountStatus === 'active'">
       <div class="section-2" @click="topUp">
@@ -23,7 +24,6 @@
 
     </div>
 
-
     <div class="section-1" v-show="this.contacts.accountStatus === 'pending'">
 
 
@@ -32,13 +32,13 @@
         <p class="action-button-text">Deposit</p>
       </div>
 
-      <div class="section-2" @click="showDialog3">
+      <div class="section-2" @click="showDialog5">
         <img src="@/assets/images/transfer_1transfer.png" loading="lazy" width="20" alt="" >
         <p class="action-button-text">Transfer</p>
       </div>
 
 
-      <div class="section-2" @click="showDialog3" >
+      <div class="section-2" @click="showDialog5" >
         <img src="@/assets/images/coin_1coin.png" loading="lazy" width="20" alt="" >
         <p class="action-button-text">Bill Pay</p>
       </div>
@@ -75,14 +75,16 @@ import InfoConfirmPaymentModal from "@/components/Modals/InfoConfirmPaymentModal
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/firebase/config";
 import InfoConfirmPaymentModal2 from "@/components/Modals/InfoConfirmPaymentModal2.vue";
+import InfoConfirmPaymentModal5 from "@/components/Modals/InfoConfirmPaymentModal5.vue";
 
 export default {
   name: "ActionsCard",
-  components: {InfoConfirmPaymentModal2, InfoConfirmPaymentModal},
+  components: {InfoConfirmPaymentModal5, InfoConfirmPaymentModal2, InfoConfirmPaymentModal},
   data() {
     return {
       dialogIsVisible2: false,
       dialogIsVisible3: false,
+      dialogIsVisible5: false,
       contacts: [],
     };
   },
@@ -114,6 +116,14 @@ export default {
     showDialog3() {
       this.dialogIsVisible3 = true;
     },
+
+    showDialog5() {
+      this.dialogIsVisible5 = true;
+    },
+    hideDialog5() {
+      this.dialogIsVisible5 = false;
+    },
+
   },
 
 
