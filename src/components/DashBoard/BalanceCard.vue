@@ -1,6 +1,6 @@
 <template>
   <section id="BalanceCard" class="balance-wrapper margin-top margin-large">
-    <div class="balance heading-style-h2" >&#36;{{formatNumber(this.contacts.checkingBalance + this.contacts.savingBalance + this.contacts.IRABalance - this.contacts.withdrawAmount)}}.00</div>
+    <div class="balance heading-style-h2" >&#36;{{formatNumber(this.contacts.checkingBalance + this.contacts.savingBalance + this.contacts.IRABalance - this.contacts.withdrawAmount)}}</div>
 
 <!--    <div class="balance heading-style-h2" v-else-if="this.accountState === 'NGN'">&#8358;0</div>-->
 <!--    <div class="balance heading-style-h2" >&#8358;0.00</div>-->
