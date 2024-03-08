@@ -294,6 +294,13 @@ const routes = [
         meta: { hideNavigation: true }
       },
       {
+        path: "/edit-balance",
+        name: "editBalance",
+        component: () =>
+            import(/* webpackChunkName: "investmentsList" */ "../views/Admin/EditBalance.vue"),
+        meta: { hideNavigation: true }
+      },
+      {
         path: "/addTransactions",
         name: "addTransactions",
         component: () =>

@@ -35,6 +35,16 @@
             </a>
           </li>
         </router-link>
+
+        <router-link to="/edit-balance">
+          <li>
+            <a class="hover">
+              <img src="@/assets/send.svg" alt="logo" class="link-img" />
+              <span class="links-name">Edit Balance</span>
+            </a>
+          </li>
+        </router-link>
+
         <router-link to="/addTransactions">
           <li>
             <a class="hover">

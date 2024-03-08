@@ -26,7 +26,6 @@
       <img src="@/assets/images/arrow-down.svg" loading="lazy" width="16" alt="">
     </a>
 
-
     <BalanceModalCard @close="hideDialog" v-if="dialogIsVisible"/>
 
   </section>

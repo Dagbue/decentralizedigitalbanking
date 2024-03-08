@@ -1,7 +1,7 @@
 <template>
   <div class="alpha">
     <div class="body">
-      <h2>Account Balances</h2>
+      <h2>Edit Account Balances</h2>
       <div class="row trans-mgt">
         <div class="form-group fg--search">
           <button type="submit"><i class="fa fa-search"></i></button>
@@ -27,8 +27,8 @@
         <!--        </p>-->
       </div>
 
-       <div class="table" v-if="this.contacts.length >0">
-         <table>
+      <div class="table" v-if="this.contacts.length >0">
+        <table>
           <tr>
             <th>Email</th>
             <th>Acc Tier</th>
@@ -49,49 +49,50 @@
           </tr>
           </tbody>
 
-          </table>
-         <div class="pagination">
-           <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
-           <div class="page-indicator">
-             Page {{ currentPage }} of {{ totalPages }}
-           </div>
-           <button @click="nextPage" :disabled="currentPage === totalPages" class="previous">Next</button>
-         </div>
-         <form>
-           <div class="fields-alpha-2">
-             <!--      <label>Select Email</label>-->
-             <select class="select-form" v-model="SelectEmail" aria-placeholder="Select Users Email" required>
-               <option value="" disabled>Select Users Email</option>
-               <option v-for="option in contacts" :key="option" :value="option.email" >
-                 {{ option.email}}
-               </option>
-             </select>
+        </table>
+        <div class="pagination">
+          <button @click="previousPage" :disabled="currentPage === 1" class="previous">Previous</button>
+          <div class="page-indicator">
+            Page {{ currentPage }} of {{ totalPages }}
+          </div>
+          <button @click="nextPage" :disabled="currentPage === totalPages" class="previous">Next</button>
+        </div>
+        <form>
+          <div class="fields-alpha-2">
+            <!--      <label>Select Email</label>-->
+            <select class="select-form" v-model="SelectEmail" aria-placeholder="Select Users Email" required>
+              <option value="" disabled>Select Users Email</option>
+              <option v-for="option in contacts" :key="option" :value="option.email" >
+                {{ option.email}}
+              </option>
+            </select>
 
-             <!--      <label>Enter Profit</label>-->
-             <input type="number" v-model="profits" placeholder="Enter Checking"/>
-             <button class="btn" @click="update1" type="button">Submit</button>
+            <!--      <label>Enter Profit</label>-->
+            <input type="number" v-model="profits" placeholder="Enter Checking"/>
+            <button class="btn" @click="update1" type="button">Submit</button>
 
-             <!--      <label>Enter Bonus</label>-->
-             <input type="number" v-model="bonusMain" placeholder="Enter Saving"/>
-             <button class="btn" @click="update2" type="button">Submit</button>
+            <!--      <label>Enter Bonus</label>-->
+            <input type="number" v-model="bonusMain" placeholder="Enter Saving"/>
+            <button class="btn" @click="update2" type="button">Submit</button>
 
-             <!--      <label>Enter Ref Bonus</label>-->
-             <input type="number" v-model="bonus" placeholder="Enter IRA"/>
-             <button class="btn" @click="update3" type="button">Submit</button>
-           </div>
-         </form>
-       </div>
+            <!--      <label>Enter Ref Bonus</label>-->
+            <input type="number" v-model="bonus" placeholder="Enter IRA"/>
+            <button class="btn" @click="update3" type="button">Submit</button>
+          </div>
+        </form>
+      </div>
 
     </div>
   </div>
 </template>
 
 <script>
-import {collection, doc, getDocs, setDoc, increment } from "firebase/firestore";
+import {collection, doc, getDocs, setDoc} from "firebase/firestore";
 import {db} from "@/firebase/config";
 import Swal from "sweetalert2";
+
 export default {
-  name: "DashBoardInvestmentsView",
+  name: "EditBalance",
   data () {
     return {
       SelectEmail: "",
@@ -165,32 +166,32 @@ export default {
 
     async update1() {
       await setDoc(doc(db, this.SelectEmail, "USER"), {
-        checkingBalance: increment(this.profits),
+        checkingBalance: this.profits,
       },{ merge: true })
           .then(() => console.log('investment updated'));
 
       await setDoc(doc(db, "listOfUsers", this.SelectEmail), {
-        checkingBalance: increment(this.profits),
+        checkingBalance: this.profits,
       },{ merge: true })
           // .then(() => location.reload());
-    .then(async () => {
-      await Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Checking Account Balance Updated!',
-      });
-      await location.reload();
-    })
+          .then(async () => {
+            await Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Checking Account Balance Updated!',
+            });
+            await location.reload();
+          })
     },
 
     async update2() {
       await setDoc(doc(db, this.SelectEmail, "USER"), {
-        savingBalance: increment(this.bonusMain),
+        savingBalance: this.bonusMain,
       },{ merge: true })
           .then(() => console.log('investment updated'));
 
       await setDoc(doc(db, "listOfUsers", this.SelectEmail), {
-        savingBalance: increment(this.bonusMain),
+        savingBalance: this.bonusMain,
       },{ merge: true })
           .then(async () => {
             await Swal.fire({
@@ -204,12 +205,12 @@ export default {
 
     async update3() {
       await setDoc(doc(db, this.SelectEmail, "USER"), {
-        IRABalance: increment(this.bonus),
+        IRABalance: this.bonus,
       },{ merge: true })
           .then(() => console.log('investment updated'));
 
       await setDoc(doc(db, "listOfUsers", this.SelectEmail), {
-        IRABalance: increment(this.bonus),
+        IRABalance: this.bonus,
       },{ merge: true })
           .then(async () => {
             await Swal.fire({
