@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <div class="setup-title">
-                  <div class="text-block-50">&#36;{{formatNumber(this.contacts.checkingBalance)}}.00</div>
+                  <div class="text-block-50">&#36;{{formatNumber(this.contacts.checkingBalance)}}</div>
                 </div>
               </a>
             </router-link>
@@ -48,7 +48,7 @@
                   </div>
                 </div>
                 <div class="setup-title">
-                  <div class="text-block-50">&#36;{{formatNumber(this.contacts.savingBalance)}}.00</div>
+                  <div class="text-block-50">&#36;{{formatNumber(this.contacts.savingBalance)}}</div>
                 </div>
               </a>
             </router-link>
@@ -63,7 +63,7 @@
                   </div>
                 </div>
                 <div class="setup-title">
-                  <div class="text-block-50">&#36;{{formatNumber(this.contacts.IRABalance)}}.00</div>
+                  <div class="text-block-50">&#36;{{formatNumber(this.contacts.IRABalance)}}</div>
                 </div>
               </a>
             </router-link>
@@ -143,7 +143,7 @@
 
                   <tbody v-for="child in paginatedItems" :key="child.key">
 
-                  <tr >
+                  <tr>
                     <td>
                       <div class="separate-1">
                         <i v-if="child.transactionType === 'deposit'" class='bx bx-log-in-circle' ></i>
@@ -172,7 +172,6 @@
                         <!--                      <p class="text-block-77" v-else>{{items.transactionStatus}}</p>-->
                       </div>
                     </td>
-
                     <td>
                       <div class="separate-2">
                         <div class="name-text">{{child.desc}}</div>
@@ -180,7 +179,6 @@
                         <!--                      <p class="text-block-77" v-else>{{items.transactionStatus}}</p>-->
                       </div>
                     </td>
-
                     <td>
                       <div class="separate-3">
                         <p class="amount-text">{{formattedDate(child.createdAt)}}</p>
@@ -530,13 +528,13 @@ li {display: inline-block; margin: 0 10px; }
 
 .bx-log-in-circle{
   color: #0aae43;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
 }
 
 .bx-log-out-circle{
   color: #DB657B;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
 }
 
@@ -608,9 +606,9 @@ td {
   /*letter-spacing: 1px;*/
   color: #667085;
   font-weight: 200;
-  font-size: 20px;
-  min-width: 50px;
-  max-width: 200px;
+  font-size: 18px;
+  /*min-width: 50px;*/
+  /*max-width: 200px;*/
   /*border-bottom: 1px solid #E3EBF6;*/
 }
 

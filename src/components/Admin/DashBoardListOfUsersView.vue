@@ -94,7 +94,7 @@ export default {
       contacts: [],
       SelectEmail: "",
       currentPage: 1,
-      itemsPerPage: 10,
+      itemsPerPage: 7,
       accountStatus1: "active",
       accountStatus2: "pending",
       accountStatus3: "blocked",

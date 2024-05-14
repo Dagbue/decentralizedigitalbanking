@@ -20,7 +20,7 @@
               <div class="left-block"><img src="@/assets/images/KYC.svg" loading="lazy" alt="">
                 <div class="balance-details">
                   <div class="currency"> Free Checking 2</div>
-                  <div class="balance-text">&#36;{{formatNumber(this.contacts.checkingBalance)}}.00</div>
+                  <div class="balance-text">&#36;{{formatNumber(this.contacts.checkingBalance)}}</div>
                 </div>
               </div>
 
@@ -38,7 +38,7 @@
               <div class="left-block"><img src="@/assets/images/KYC.svg" loading="lazy" alt="">
                 <div class="balance-details">
                   <div class="currency"> Primary Savings 1</div>
-                  <div class="balance-text">&#36;{{formatNumber(this.contacts.savingBalance)}}.00</div>
+                  <div class="balance-text">&#36;{{formatNumber(this.contacts.savingBalance)}}</div>
                 </div>
               </div>
 
@@ -59,7 +59,7 @@
             <div class="left-block"><img src="@/assets/images/KYC.svg" loading="lazy" alt="">
               <div class="balance-details">
                 <div class="currency"> DDB IRA</div>
-                <div class="balance-text">&#36;{{formatNumber(this.contacts.IRABalance)}}.00</div>
+                <div class="balance-text">&#36;{{formatNumber(this.contacts.IRABalance)}}</div>
               </div>
             </div>
 
