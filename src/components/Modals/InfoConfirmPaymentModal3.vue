@@ -22,16 +22,16 @@
 
         <div class="text-block-73 lawrence">{{digitalCurrency}} wallet Address: </div>
 
-        <p v-show="digitalCurrency === 'Bitcoin'" class="lawrence-2">bc1qwn7r3e0dzh9tjz2ltk0gukv4zz8ggagzxqtfzh</p>
-        <p v-show="digitalCurrency === 'Ethereum'" class="lawrence-2">0x11C7f5F6eD4a89876Ef3b12E3DB2B3988720A0bA</p>
+        <p v-show="digitalCurrency === 'Bitcoin'" class="lawrence-2">1KifevyoikJJGHSjQMgGWV8gBXpX6fQyGk</p>
+        <p v-show="digitalCurrency === 'Ethereum'" class="lawrence-2">0xC7C854E9b5fBA3Cb85A0cd3e30A9C266D0BAF77c</p>
 <!--        <p v-show="digitalCurrency === 'USDT'" class="lawrence-2">TFzEqwoBWbPE8XYQ2nb9cgmYKev1fooSh2</p>-->
 
         <div class="text-block-73 lawrence">{{digitalCurrency}} Qr Code: </div>
 
 
 <!--        <img v-show="digitalCurrency === 'USDT'" src="@/assets/usdt.jpeg" loading="lazy" width="160" alt="">-->
-        <img v-show="digitalCurrency === 'Bitcoin'" src="@/assets/bitcoin.jpeg" loading="lazy" width="160" alt="">
-        <img v-show="digitalCurrency === 'Ethereum'" src="@/assets/eth.jpeg" loading="lazy" width="160" alt="">
+        <img v-show="digitalCurrency === 'Bitcoin'" src="@/assets/btc.jpg" loading="lazy" width="200" alt="">
+        <img v-show="digitalCurrency === 'Ethereum'" src="@/assets/eth.jpg" loading="lazy" width="200" alt="">
 
 
 <!--        <div class="margin-top margin-small">-->
