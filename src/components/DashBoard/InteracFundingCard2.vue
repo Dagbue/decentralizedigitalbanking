@@ -34,7 +34,7 @@
             <div class="setup-title-wrapper"><img src="@/assets/images/bank.svg" loading="lazy" alt="">
               <div class="setup-title">
                 <div class="text-block-51">
-                  Select Digital currency
+                  Select Digital currency Below
                   <!--                    <strong>payment@rubieswire.com</strong>-->
                 </div>
               </div>
@@ -73,7 +73,7 @@
             <div class="setup-title-wrapper"><img src="@/assets/images/bank.svg" loading="lazy" alt="">
               <div class="setup-title">
                 <div class="text-block-51">
-                  Click Proceed to begin transactions
+                  Click The Proceed Button to begin transactions
                   <!--                    <strong>payment@rubieswire.com</strong>-->
                 </div>
               </div>
@@ -159,7 +159,7 @@ strong{
   text-transform: lowercase;
 }
 .input-form-2{
-  /*margin-top: 7%;*/
+  margin-top: 1%;
   display: block;
   /*justify-content: center;*/
 }
